@@ -24,7 +24,22 @@
     { id:'travel', icon:'🧭', title:'Город и поездки', subtitle:'Отель, улица, автобус, направления', level:'A1', xp:60, tags:['travel'], locked:false },
     { id:'home', icon:'🏠', title:'Дом и вещи', subtitle:'Комната, ключи, телефон, мебель', level:'A1', xp:50, tags:['home'], locked:false },
     { id:'verbs', icon:'⚡', title:'Глаголы и мини-фразы', subtitle:'Быть, иметь, идти, хотеть, жить', level:'A1+', xp:70, tags:['verb'], locked:false },
-    { id:'cases', icon:'🧠', title:'Первые падежи', subtitle:'u Beogradu, iz Rusije, u prodavnicu', level:'A2', xp:80, tags:['grammar'], locked:false }
+    { id:'cases', icon:'🧠', title:'Первые падежи', subtitle:'u Beogradu, iz Rusije, u prodavnicu', level:'A2', xp:80, tags:['grammar'], locked:false },
+
+    { id:'a2-bridge', icon:'🌉', title:'A2 → B1: мост', subtitle:'Связные рассказы о себе, планах, опыте и причинах', level:'A2+', xp:100, tags:['a2plus','bridge'], unlockXp:420, prereq:['cases'] },
+    { id:'b1-conversation', icon:'🗣️', title:'B1: разговоры и мнения', subtitle:'Согласиться, возразить, объяснить причину, спросить уточнение', level:'B1', xp:120, tags:['b1','opinion'], unlockXp:520, prereq:['a2-bridge'] },
+    { id:'b1-life', icon:'🏙️', title:'B1: жизнь в Сербии', subtitle:'Аренда, документы, банк, врач, бытовые ситуации', level:'B1', xp:130, tags:['b1','life'], unlockXp:650, prereq:['b1-conversation'] },
+    { id:'b1-grammar', icon:'🧩', title:'B1: связки и придаточные', subtitle:'zato što, dok, kada, ako, trebalo bi, voleo bih', level:'B1+', xp:140, tags:['b1','grammar'], unlockXp:780, prereq:['b1-life'] },
+    { id:'b2-discussion', icon:'🎙️', title:'B2: дискуссии', subtitle:'Аргументы, контраргументы, политика повседневности, культура', level:'B2', xp:160, tags:['b2','discussion'], unlockXp:950, prereq:['b1-grammar'] },
+    { id:'b2-formal', icon:'✉️', title:'B2: формальное общение', subtitle:'Письма, заявления, собеседование, официальные формулировки', level:'B2', xp:165, tags:['b2','formal'], unlockXp:1120, prereq:['b2-discussion'] },
+    { id:'b2-media', icon:'📰', title:'B2: новости и медиа', subtitle:'Понимать статьи, пересказывать события, выделять позицию автора', level:'B2+', xp:180, tags:['b2','media'], unlockXp:1280, prereq:['b2-formal'] }
+  ];
+
+  const levelTracks = [
+    { id:'start', title:'Старт', range:'A0–A1', lessonIds:['alphabet','greetings','basics','numbers','food','travel','home','verbs'], goal:'Понимать базовые слова, читать оба письма, строить короткие фразы.' },
+    { id:'a2', title:'Самостоятельность', range:'A2', lessonIds:['cases','a2-bridge'], goal:'Рассказывать о себе, ориентироваться в городе, объяснять простые причины.' },
+    { id:'b1', title:'Разговорный уровень', range:'B1', lessonIds:['b1-conversation','b1-life','b1-grammar'], goal:'Поддерживать бытовой разговор, описывать опыт, выражать мнение.' },
+    { id:'b2', title:'Уверенная речь', range:'B2', lessonIds:['b2-discussion','b2-formal','b2-media'], goal:'Аргументировать, писать формально, понимать новости и длинные тексты.' }
   ];
 
   const vocab = [
@@ -143,13 +158,91 @@
     w('dajte mi vodu','дајте ми воду','дайте мне воду','cases','grammar','Dajte mi vodu, molim.','Дайте мне воду, пожалуйста.'),
     w('pričam sa prijateljem','причам са пријатељем','я разговариваю с другом','cases','grammar','Pričam sa prijateljem.','Я разговариваю с другом.'),
     w('bez šećera','без шећера','без сахара','cases','grammar','Kafa bez šećera.','Кофе без сахара.'),
-    w('sa mlekom','са млеком','с молоком','cases','grammar','Kafa sa mlekom.','Кофе с молоком.')
+    w('sa mlekom','са млеком','с молоком','cases','grammar','Kafa sa mlekom.','Кофе с молоком.'),
+
+    // A2+ bridge
+    w('pre svega','пре свега','прежде всего','a2-bridge','bridge','Pre svega, želim da učim srpski.','Прежде всего, я хочу учить сербский.'),
+    w('posle toga','после тога','после этого','a2-bridge','bridge','Posle toga idem kući.','После этого я иду домой.'),
+    w('prošle godine','прошле године','в прошлом году','a2-bridge','bridge','Prošle godine sam bio u Srbiji.','В прошлом году я был в Сербии.'),
+    w('sledeće nedelje','следеће недеље','на следующей неделе','a2-bridge','bridge','Sledeće nedelje putujem u Novi Sad.','На следующей неделе я еду в Нови-Сад.'),
+    w('mislim da','мислим да','я думаю, что','a2-bridge','bridge','Mislim da je srpski lep jezik.','Я думаю, что сербский красивый язык.'),
+    w('zato što','зато што','потому что','a2-bridge','bridge','Učim srpski zato što živim ovde.','Я учу сербский, потому что живу здесь.'),
+    w('imam iskustva','имам искуства','у меня есть опыт','a2-bridge','bridge','Imam iskustva sa računarima.','У меня есть опыт с компьютерами.'),
+    w('želeo bih','желео бих','я хотел бы','a2-bridge','bridge','Želeo bih da rezervišem sobu.','Я хотел бы забронировать комнату.'),
+    w('treba mi pomoć','треба ми помоћ','мне нужна помощь','a2-bridge','bridge','Treba mi pomoć oko dokumenta.','Мне нужна помощь с документом.'),
+    w('moj plan je','мој план је','мой план —','a2-bridge','bridge','Moj plan je da učim svaki dan.','Мой план — учиться каждый день.'),
+
+    // B1 conversation
+    w('slažem se','слажем се','я согласен','b1-conversation','opinion','Slažem se sa tobom.','Я согласен с тобой.'),
+    w('ne slažem se','не слажем се','я не согласен','b1-conversation','opinion','Ne slažem se u potpunosti.','Я не полностью согласен.'),
+    w('po mom mišljenju','по мом мишљењу','по моему мнению','b1-conversation','opinion','Po mom mišljenju, ovo je dobra ideja.','По моему мнению, это хорошая идея.'),
+    w('s jedne strane','с једне стране','с одной стороны','b1-conversation','opinion','S jedne strane, to je skupo.','С одной стороны, это дорого.'),
+    w('s druge strane','с друге стране','с другой стороны','b1-conversation','opinion','S druge strane, kvalitet je bolji.','С другой стороны, качество лучше.'),
+    w('možeš li da objasniš?','можеш ли да објасниш?','можешь объяснить?','b1-conversation','opinion','Možeš li da objasniš šta se desilo?','Можешь объяснить, что случилось?'),
+    w('nisam siguran','нисам сигуран','я не уверен','b1-conversation','opinion','Nisam siguran da je to tačno.','Я не уверен, что это точно.'),
+    w('u pravu si','у праву си','ты прав','b1-conversation','opinion','U pravu si, nisam razmišljao o tome.','Ты прав, я об этом не думал.'),
+    w('to zavisi od','то зависи од','это зависит от','b1-conversation','opinion','To zavisi od situacije.','Это зависит от ситуации.'),
+    w('hajde da probamo','хајде да пробамо','давай попробуем','b1-conversation','opinion','Hajde da probamo još jednom.','Давай попробуем ещё раз.'),
+
+    // B1 life in Serbia
+    w('ugovor o zakupu','уговор о закупу','договор аренды','b1-life','life','Potpisao sam ugovor o zakupu.','Я подписал договор аренды.'),
+    w('lična karta','лична карта','удостоверение личности','b1-life','life','Da li imate ličnu kartu?','У вас есть удостоверение личности?'),
+    w('zdravstveno osiguranje','здравствено осигурање','медицинская страховка','b1-life','life','Treba mi zdravstveno osiguranje.','Мне нужна медицинская страховка.'),
+    w('otvoriti račun u banci','отворити рачун у банци','открыть счёт в банке','b1-life','life','Želim da otvorim račun u banci.','Я хочу открыть счёт в банке.'),
+    w('zakazati termin','заказати термин','записаться / назначить время','b1-life','life','Moram da zakažem termin kod lekara.','Мне нужно записаться к врачу.'),
+    w('račun za struju','рачун за струју','счёт за электричество','b1-life','life','Stigao je račun za struju.','Пришёл счёт за электричество.'),
+    w('prijava boravka','пријава боравка','регистрация пребывания','b1-life','life','Gde mogu da uradim prijavu boravka?','Где я могу сделать регистрацию пребывания?'),
+    w('hitno je','хитно је','это срочно','b1-life','life','Izvinite, hitno je.','Извините, это срочно.'),
+    w('popuniti formular','попунити формулар','заполнить форму','b1-life','life','Treba da popunim formular.','Мне нужно заполнить форму.'),
+    w('potvrda','потврда','справка / подтверждение','b1-life','life','Potrebna mi je potvrda.','Мне нужна справка.'),
+
+    // B1 grammar connectors
+    w('kada budem imao vremena','када будем имао времена','когда у меня будет время','b1-grammar','grammar-b1','Kada budem imao vremena, pozvaću te.','Когда у меня будет время, я тебе позвоню.'),
+    w('ako budeš želeo','ако будеш желео','если ты захочешь','b1-grammar','grammar-b1','Ako budeš želeo, možemo da se vidimo.','Если захочешь, мы можем увидеться.'),
+    w('dok sam čekao','док сам чекао','пока я ждал','b1-grammar','grammar-b1','Dok sam čekao autobus, čitao sam vesti.','Пока я ждал автобус, я читал новости.'),
+    w('iako je teško','иако је тешко','хотя это сложно','b1-grammar','grammar-b1','Iako je teško, nastaviću da učim.','Хотя это сложно, я продолжу учиться.'),
+    w('trebalo bi da','требало би да','следовало бы / нужно бы','b1-grammar','grammar-b1','Trebalo bi da vežbam svaki dan.','Мне следовало бы тренироваться каждый день.'),
+    w('voleo bih da','волео бих да','я хотел бы, чтобы / хотел бы','b1-grammar','grammar-b1','Voleo bih da govorim tečnije.','Я хотел бы говорить свободнее.'),
+    w('bez obzira na','без обзира на','несмотря на','b1-grammar','grammar-b1','Bez obzira na cenu, kvalitet je važan.','Несмотря на цену, качество важно.'),
+    w('umesto da','уместо да','вместо того чтобы','b1-grammar','grammar-b1','Umesto da čekamo, možemo da krenemo.','Вместо того чтобы ждать, мы можем пойти.'),
+    w('pre nego što','пре него што','перед тем как','b1-grammar','grammar-b1','Pre nego što odeš, pozovi me.','Перед тем как уйдёшь, позвони мне.'),
+    w('čim stignem','чим стигнем','как только я приеду','b1-grammar','grammar-b1','Čim stignem, poslaću poruku.','Как только приеду, отправлю сообщение.'),
+
+    // B2 discussion
+    w('glavni argument je','главни аргумент је','главный аргумент —','b2-discussion','discussion','Glavni argument je da je obrazovanje dostupnije.','Главный аргумент — образование стало доступнее.'),
+    w('protivargument','противаргумент','контраргумент','b2-discussion','discussion','Postoji i snažan protivargument.','Есть и сильный контраргумент.'),
+    w('posledice odluke','последице одлуке','последствия решения','b2-discussion','discussion','Moramo razmotriti posledice odluke.','Нужно рассмотреть последствия решения.'),
+    w('javno mnjenje','јавно мњење','общественное мнение','b2-discussion','discussion','Javno mnjenje se brzo menja.','Общественное мнение быстро меняется.'),
+    w('dugoročno gledano','дугорочно гледано','в долгосрочной перспективе','b2-discussion','discussion','Dugoročno gledano, to može biti korisno.','В долгосрочной перспективе это может быть полезно.'),
+    w('kratkoročno rešenje','краткорочно решење','краткосрочное решение','b2-discussion','discussion','To je samo kratkoročno rešenje.','Это лишь краткосрочное решение.'),
+    w('neophodno je','неопходно је','необходимо','b2-discussion','discussion','Neophodno je da proverimo izvore.','Необходимо проверить источники.'),
+    w('prema dostupnim podacima','према доступним подацима','по доступным данным','b2-discussion','discussion','Prema dostupnim podacima, trend raste.','По доступным данным, тренд растёт.'),
+
+    // B2 formal
+    w('poštovani','поштовани','уважаемый / уважаемые','b2-formal','formal','Poštovani, obraćam vam se povodom prijave.','Уважаемые, обращаюсь к вам по поводу заявки.'),
+    w('obraćam vam se','обраћам вам се','обращаюсь к вам','b2-formal','formal','Obraćam vam se sa molbom.','Обращаюсь к вам с просьбой.'),
+    w('u prilogu šaljem','у прилогу шаљем','во вложении отправляю','b2-formal','formal','U prilogu šaljem dokumenta.','Во вложении отправляю документы.'),
+    w('zahvaljujem na odgovoru','захваљујем на одговору','благодарю за ответ','b2-formal','formal','Zahvaljujem na odgovoru i pomoći.','Благодарю за ответ и помощь.'),
+    w('srdačan pozdrav','срдачан поздрав','с уважением / сердечный привет','b2-formal','formal','Srdačan pozdrav, Efim.','С уважением, Ефим.'),
+    w('radno iskustvo','радно искуство','опыт работы','b2-formal','formal','Imam radno iskustvo u prodaji.','У меня есть опыт работы в продажах.'),
+    w('motivaciono pismo','мотивационо писмо','мотивационное письмо','b2-formal','formal','Treba da napišem motivaciono pismo.','Мне нужно написать мотивационное письмо.'),
+    w('rok za prijavu','рок за пријаву','срок подачи заявки','b2-formal','formal','Rok za prijavu je petak.','Срок подачи заявки — пятница.'),
+
+    // B2 media
+    w('prema izveštaju','према извештају','согласно отчёту','b2-media','media','Prema izveštaju, situacija se poboljšava.','Согласно отчёту, ситуация улучшается.'),
+    w('autor ističe','аутор истиче','автор подчёркивает','b2-media','media','Autor ističe značaj obrazovanja.','Автор подчёркивает важность образования.'),
+    w('ključna poruka','кључна порука','ключевая мысль','b2-media','media','Ključna poruka teksta je jasna.','Ключевая мысль текста ясна.'),
+    w('izvor informacija','извор информација','источник информации','b2-media','media','Proveri izvor informacija.','Проверь источник информации.'),
+    w('naslov može da zavara','наслов може да завара','заголовок может ввести в заблуждение','b2-media','media','Naslov može da zavara čitaoca.','Заголовок может ввести читателя в заблуждение.'),
+    w('zaključak članka','закључак чланка','вывод статьи','b2-media','media','Zaključak članka nije dovoljno ubedljiv.','Вывод статьи недостаточно убедителен.'),
+    w('neutralan ton','неутралан тон','нейтральный тон','b2-media','media','Tekst ima neutralan ton.','Текст имеет нейтральный тон.'),
+    w('pristrasan tekst','пристрасан текст','предвзятый текст','b2-media','media','Ovo je pristrasan tekst.','Это предвзятый текст.')
   ];
 
   const guideCards = [
     {
       title:'1. Два письма: латиница и кириллица',
-      body:'В Сербии ты встретишь оба варианта: Serbian Latin и Serbian Cyrillic. Для старта удобнее учить пары букв одновременно: Č = Ч, Ć = Ћ, Đ = Ђ, Lj = Љ, Nj = Њ, Dž = Џ.',
+      body:'В Сербии ты встретишь оба варианта: Serbian Latin и Serbian Cyrillic. Для старта удобнее учить пары букв одновременно: Č = Ч, Ć = Ћ, Đ = Ђ, Lj = Љ, Nj = Њ.',
       points:['Принцип простой: обычно «пишется как слышится».','В приложении можно переключать режим Latin/Ћирилица сверху.','Для iPhone лучше добавить клавиатуру Serbian или Croatian ради č, ć, š, ž, đ.']
     },
     {
@@ -163,9 +256,24 @@
       points:['Ja sam student — Я студент.','Imam pitanje — У меня есть вопрос.','Hoću vodu — Я хочу воду.','Idem u grad — Я иду в город.']
     },
     {
-      title:'4. Падежи: только самое нужное',
+      title:'4. Падежи A2: только самое нужное',
       body:'Падежи не нужно зубрить сразу. Начни с готовых шаблонов: из страны, в городе, в направление, с кем-то, без чего-то.',
       points:['iz Rusije — из России.','u Beogradu — в Белграде.','u prodavnicu — в магазин.','sa prijateljem — с другом.','bez šećera — без сахара.']
+    },
+    {
+      title:'5. Переход A2 → B1',
+      body:'B1 начинается, когда ты уже можешь связать 5–7 простых предложений: кто ты, где живёшь, что планируешь и почему тебе это важно.',
+      points:['Используй связки: pre svega, posle toga, zato što, mislim da.','Тренируй мини-монологи: 30–60 секунд вслух.','На B1 важнее беглость, чем идеальные падежи.']
+    },
+    {
+      title:'6. B1: мнение и бытовые задачи',
+      body:'Цель B1 — не просто перевести слово, а объяснить ситуацию: аренда, документы, банк, врач, работа, учёба, планы.',
+      points:['Po mom mišljenju — по моему мнению.','Ne slažem se u potpunosti — я не полностью согласен.','Treba mi potvrda — мне нужна справка.','Moram da zakažem termin — мне нужно записаться.']
+    },
+    {
+      title:'7. B2: аргументация и формальный стиль',
+      body:'На B2 добавляются длинные тексты, новости, письма, собеседования, аргументы и контраргументы. Тут важно учиться пересказывать смысл, а не отдельные слова.',
+      points:['Glavni argument je… — главный аргумент…','Prema dostupnim podacima… — по доступным данным…','U prilogu šaljem… — во вложении отправляю…','Zaključak članka… — вывод статьи…']
     }
   ];
 
@@ -302,16 +410,91 @@
     return Math.round(values.reduce((a,b)=>a+b,0) / values.length);
   }
 
+  function levelProgress(lessonIds) {
+    if (!lessonIds.length) return 0;
+    const done = lessonIds.map(id => completionOf(id)).reduce((a,b)=>a+b,0);
+    return Math.round(done / lessonIds.length);
+  }
+
+  function isLessonLocked(lesson) {
+    if (!lesson) return true;
+    const hasGate = lesson.prereq?.length || lesson.unlockXp;
+    if (!hasGate) return !!lesson.locked;
+    const prereqOk = !lesson.prereq?.length || lesson.prereq.every(id => completionOf(id) >= 100);
+    const xpOk = !lesson.unlockXp || state.xp >= lesson.unlockXp;
+    return !(prereqOk && xpOk);
+  }
+
+  function unlockedLessonIds() {
+    return lessons.filter(l => !isLessonLocked(l)).map(l => l.id);
+  }
+
+  function availableVocab() {
+    const ids = unlockedLessonIds();
+    const pool = vocab.filter(v => ids.includes(v.lesson));
+    return pool.length ? pool : vocab.filter(v => ['greetings','basics','numbers','food'].includes(v.lesson));
+  }
+
+  function unlockText(lesson) {
+    const parts = [];
+    if (lesson.prereq?.length) {
+      const names = lesson.prereq.map(id => lessons.find(l => l.id === id)?.title || id).join(', ');
+      parts.push(`заверши: ${names}`);
+    }
+    if (lesson.unlockXp) parts.push(`набери ${lesson.unlockXp} XP`);
+    return parts.length ? parts.join(' · ') : 'скоро будет доступно';
+  }
+
+  function renderRoadmap() {
+    return `
+      <div class="section-title">
+        <div><h2>Уровни A → B</h2><p>После A2 приложение уже готово вести тебя дальше: A2+ → B1 → B2.</p></div>
+        <span class="badge">переход на B-уровни</span>
+      </div>
+      <section class="level-roadmap">
+        ${levelTracks.map(track => {
+          const pct = levelProgress(track.lessonIds);
+          const nextLocked = track.lessonIds.map(id => lessons.find(l => l.id === id)).filter(Boolean).some(l => isLessonLocked(l));
+          return `
+            <article class="level-card ${pct >= 100 ? 'complete' : ''}">
+              <div class="level-head"><span class="level-range">${track.range}</span><b>${escapeHtml(track.title)}</b></div>
+              <p>${escapeHtml(track.goal)}</p>
+              <div class="progress-bar"><i style="width:${pct}%"></i></div>
+              <div class="lesson-meta"><span class="badge">${pct}%</span><span class="badge">${nextLocked ? 'часть заблокирована' : 'доступно'}</span></div>
+            </article>
+          `;
+        }).join('')}
+      </section>
+    `;
+  }
+
+  function renderLockedLesson(lesson) {
+    app.innerHTML = `
+      <section class="exercise-wrap">
+        <article class="exercise-card" style="text-align:center">
+          <span class="kicker">Следующий уровень</span>
+          <h1>🔒 ${escapeHtml(lesson.title)}</h1>
+          <p>Этот урок откроется автоматически, когда ты пройдёшь предыдущие шаги. Так переход на B1/B2 будет постепенным, а не резким.</p>
+          <div class="empty">${escapeHtml(unlockText(lesson))}</div>
+          <div class="hero-actions" style="justify-content:center">
+            <button class="btn primary" data-route="home">Вернуться к пути</button>
+            <button class="btn" data-daily>Тренировка доступного материала</button>
+          </div>
+        </article>
+      </section>
+    `;
+  }
+
   function renderHome() {
     session = null;
     const progress = totalCompleted();
-    const recommended = lessons.find(l => completionOf(l.id) < 100) || lessons[0];
+    const recommended = lessons.find(l => !isLessonLocked(l) && completionOf(l.id) < 100) || lessons.find(l => !isLessonLocked(l)) || lessons[0];
     app.innerHTML = `
       <section class="hero">
         <div class="panel">
-          <span class="kicker">🇷🇸 A0 → A2 • без регистрации</span>
+          <span class="kicker">🇷🇸 A0 → B2 • без регистрации</span>
           <h1>Сербский как мини-игра на каждый день</h1>
-          <p>Карточки, угадывания слов, кириллица, набор фраз, аудио-повторение и прогресс сохраняются прямо в браузере. Всё работает локально на GitHub Pages.</p>
+          <p>Карточки, угадывания слов, кириллица, набор фраз, аудио-повторение и прогресс сохраняются прямо в браузере. Теперь путь рассчитан не только на A0–A2, но и на дальнейший переход к B1/B2.</p>
           <div class="hero-actions">
             <button class="btn primary" data-start="${recommended.id}">Продолжить: ${escapeHtml(recommended.title)}</button>
             <button class="btn" data-route="cards">Повторить карточки</button>
@@ -326,7 +509,7 @@
         <div class="panel">
           <span class="kicker">Быстрый старт</span>
           <h2>Сегодняшняя цель</h2>
-          <p>Набери <b>${state.dailyGoal} XP</b>: один урок + несколько карточек. Начинай с латиницы, но постепенно включай кириллицу кнопкой сверху.</p>
+          <p>Набери <b>${state.dailyGoal} XP</b>: один урок + несколько карточек. После A2 откроется мост A2+ → B1, затем разговорные и формальные B-темы.</p>
           <div class="progress-bar" aria-label="Цель дня"><i style="width:${Math.min(100, Math.round((dailyXp()/state.dailyGoal)*100))}%"></i></div>
           <div class="hero-actions">
             <button class="btn small" data-start="alphabet">Азбука</button>
@@ -335,8 +518,9 @@
           </div>
         </div>
       </section>
+      ${renderRoadmap()}
       <div class="section-title">
-        <div><h2>Путь обучения</h2><p>Уроки короткие: выбор ответа, прослушивание, набор, пары, сбор фразы.</p></div>
+        <div><h2>Путь обучения</h2><p>Уроки короткие: выбор ответа, прослушивание, набор, пары, сбор фразы. B-уровни открываются после базы.</p></div>
         <span class="badge">${vocab.length} слов и фраз</span>
       </div>
       <section class="path">
@@ -352,9 +536,11 @@
 
   function lessonCard(lesson) {
     const pct = completionOf(lesson.id);
+    const locked = isLessonLocked(lesson);
     const count = lesson.id === 'alphabet' ? alphabet.length : vocab.filter(v => v.lesson === lesson.id).length;
+    const isAdvanced = /^B|A2\+/.test(lesson.level);
     return `
-      <article class="lesson-card ${lesson.locked ? 'locked' : ''}">
+      <article class="lesson-card ${locked ? 'locked' : ''} ${isAdvanced ? 'advanced' : ''}">
         <div>
           <div class="lesson-top">
             <div class="lesson-icon">${lesson.icon}</div>
@@ -369,21 +555,23 @@
             <span class="badge">+${lesson.xp} XP</span>
           </div>
           <div class="progress-bar"><i style="width:${pct}%"></i></div>
+          ${locked ? `<p class="unlock-note">🔒 ${escapeHtml(unlockText(lesson))}</p>` : ''}
         </div>
-        <button class="btn primary full" data-start="${lesson.id}">${pct >= 100 ? 'Повторить' : 'Начать'}</button>
+        <button class="btn primary full" data-start="${lesson.id}" ${locked ? 'disabled aria-disabled="true"' : ''}>${locked ? 'Откроется позже' : (pct >= 100 ? 'Повторить' : 'Начать')}</button>
       </article>
     `;
   }
 
   function startLesson(lessonId, daily = false) {
     const lesson = lessons.find(l => l.id === lessonId) || lessons[0];
+    if (!daily && isLessonLocked(lesson)) return renderLockedLesson(lesson);
     const exercises = daily ? buildDailyExercises() : buildExercises(lesson);
     session = { lesson, exercises, index:0, score:0, wrong:0, daily, answered:false, pairSelected:null, pairDone:[], assembled:[] };
     renderExercise();
   }
 
   function buildDailyExercises() {
-    const items = sample(vocab, 12);
+    const items = sample(availableVocab(), 12);
     const ex = [];
     items.slice(0,3).forEach(item => ex.push(makeMcq(item, 'ru-to-sr')));
     items.slice(3,5).forEach(item => ex.push(makeListen(item)));
@@ -707,9 +895,9 @@
       <section class="panel">
         <span class="kicker">Мини-учебник</span>
         <h1>Сначала фразы, потом грамматика</h1>
-        <p>Это не академический курс, а компактный самоучитель: выучить частые фразы, привыкнуть к звучанию и не бояться кириллицы.</p>
+        <p>Это не академический курс, а компактный самоучитель: выучить частые фразы, привыкнуть к звучанию, не бояться кириллицы и постепенно перейти от A0 к B1/B2.</p>
       </section>
-      <div class="section-title"><h2>Шпаргалки</h2><span class="badge">A0–A2</span></div>
+      <div class="section-title"><h2>Шпаргалки</h2><span class="badge">A0–B2</span></div>
       <section class="guide-grid">
         ${guideCards.map(card => `
           <article class="guide-card">
@@ -746,6 +934,7 @@
           <button class="btn danger" data-reset-progress>Сбросить прогресс</button>
         </div>
       </section>
+      ${renderRoadmap()}
       <div class="section-title"><h2>История</h2><span class="badge">последние 20 действий</span></div>
       <div class="timeline">
         ${(state.history || []).length ? state.history.map(h => `<div class="timeline-item"><div class="timeline-dot">+${h.xp || 0}</div><div><b>${escapeHtml(h.text)}</b><br><span class="muted">${escapeHtml(h.date)}</span></div></div>`).join('') : '<div class="empty">Истории пока нет. Пройди первый урок.</div>'}

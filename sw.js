@@ -1,4 +1,4 @@
-const CACHE = 'srbingo-cache-v1';
+const CACHE = 'srbingo-cache-v2';
 const ASSETS = [
   './',
   './index.html',
