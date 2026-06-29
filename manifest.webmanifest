@@ -1,0 +1,15 @@
+{
+  "name": "Srbingo — самоучитель сербского",
+  "short_name": "Srbingo",
+  "description": "Мини-приложение для изучения сербского языка: уроки, карточки, тесты, кириллица и произношение.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0e1726",
+  "theme_color": "#58cc02",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

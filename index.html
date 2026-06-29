@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#58cc02" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Srbingo" />
+  <meta name="description" content="Мини-самоучитель сербского языка: слова, карточки, произношение, кириллица, тесты и прогресс." />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Srbingo — самоучитель сербского</title>
+</head>
+<body>
+  <div class="bg-orb orb-a"></div>
+  <div class="bg-orb orb-b"></div>
+  <div class="app-shell">
+    <header class="topbar">
+      <button class="brand" data-route="home" aria-label="Главный экран">
+        <span class="brand-mark">Ћ</span>
+        <span>
+          <strong>Srbingo</strong>
+          <small>сербский самоучитель</small>
+        </span>
+      </button>
+      <div class="top-actions">
+        <button class="pill ghost" id="scriptToggle" type="button" title="Переключить латиницу/кириллицу">Latin</button>
+        <button class="pill ghost" id="themeToggle" type="button" title="Сменить тему">☀︎</button>
+        <button class="pill accent" id="iphoneBtn" type="button">iPhone</button>
+      </div>
+    </header>
+
+    <main id="app" class="app" aria-live="polite"></main>
+
+    <nav class="bottom-nav" aria-label="Разделы приложения">
+      <button data-route="home" class="active"><span>🏠</span><b>Уроки</b></button>
+      <button data-route="cards"><span>🃏</span><b>Карточки</b></button>
+      <button data-route="guide"><span>📘</span><b>Гайд</b></button>
+      <button data-route="profile"><span>🔥</span><b>Прогресс</b></button>
+    </nav>
+  </div>
+
+  <dialog id="installDialog" class="modal">
+    <button class="modal-close" id="closeInstall" aria-label="Закрыть">×</button>
+    <h2>Установка на iPhone</h2>
+    <p>Открой сайт в Safari, нажми <b>Поделиться</b> → <b>На экран «Домой»</b> → <b>Добавить</b>. После этого Srbingo будет открываться как отдельное приложение.</p>
+    <ol>
+      <li>Загрузи файлы в GitHub Pages.</li>
+      <li>Открой опубликованный URL на iPhone в Safari.</li>
+      <li>Добавь на главный экран — иконка уже подготовлена.</li>
+    </ol>
+    <p class="muted">Озвучка работает через встроенные голоса браузера. На iOS первый запуск аудио обычно требует нажатия на кнопку 🔊.</p>
+  </dialog>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
